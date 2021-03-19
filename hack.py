@@ -1,5 +1,6 @@
 from flask import Flask,request,render_template,jsonify
 from flask_restful import Resource,Api
+import os
 
 app = Flask(__name__)
 api = Api(app)
@@ -20,5 +21,4 @@ class Student(Resource):
 api.add_resource(Student,'/api')
 
 if __name__ == '__main__':
-	app.run()
-  
+	app.run(host=os.environ.get('OPENSHIFT_PYTHON_IP'), port=os.environ.get('OPENSHIFT_PYTHON_PORT'), debug=False)
